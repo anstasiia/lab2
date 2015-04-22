@@ -1,3 +1,4 @@
+from spyre import server
 import pandas as pd
 import urllib2
 import json
@@ -64,12 +65,12 @@ class DataAnalyze(server.App):
 
 
 
-        ,{ "input_type":"text",
+        ,{  "input_type":"text",
             "variable_name":"min",
             "label": "MIN week",
             "value":4,
             "action_id":"update_data"},
-        { "input_type":"text",
+        {   "input_type":"text",
             "variable_name":"max",
             "label": "MAX week",
             "value":6,
@@ -112,7 +113,7 @@ class DataAnalyze(server.App):
 
               }
 ,
-        { "input_type":"text",
+        {   "input_type":"text",
             "variable_name":"year",
             "label": "year",
             "value":1981,
@@ -130,7 +131,7 @@ class DataAnalyze(server.App):
 
     tabs = ["Plot", "Table"]
     outputs = [
-                {    "output_type" : "plot",
+                {   "output_type" : "plot",
                     "output_id" : "plot",
                     "control_id" : "update_data",
                     "tab" : "Plot",  # must specify which tab each output should live in
@@ -149,10 +150,8 @@ class DataAnalyze(server.App):
         df = read_and_filter(ticker)
         a = df[df["week"]<=max1 ]
         b = a[df["week"]>=min1]
-        c = b[df['year']!=0]
-        z = c[df['VHI']!=-1]
-        z
-        return z
+        b
+        return b
     def getPlot(self, params):
         ticke= str(params['ticke'])
         ticker3 = str(params['ticker3'])
@@ -169,3 +168,4 @@ class DataAnalyze(server.App):
         return fig
 app = DataAnalyze()
 app.launch(port=9094)
+raw_input()
